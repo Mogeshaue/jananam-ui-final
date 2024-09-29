@@ -14,7 +14,6 @@ const App = () => {
   const [selectedBay, setSelectedBay] = useState(null);
   const [ticketCount, setTicketCount] = useState(1);
 
-  // Fetch bay data from backend on component mount
   useEffect(() => {
     const fetchBays = async () => {
       try {
@@ -36,7 +35,7 @@ const App = () => {
 
   const handleProceedToPayment = async () => {
     if (selectedBay && ticketCount > 0 && ticketCount <= 5) {
-      const totalAmount = selectedBay.amount_of_ticket * ticketCount; // Updated to use amount_of_ticket
+      const totalAmount = selectedBay.amount_of_ticket * ticketCount;
 
       const formData = {
         amount: totalAmount,
@@ -65,7 +64,7 @@ const App = () => {
           email: formData.email,
           phone: "8056901611",
           surl: "https://test.payu.in/success",
-          furl: "http://localhost:5000/payment-failure",
+          furl: "http://localhost:8000/payment-failure",
           hash: hash,
           service_provider: "payu_paisa",
         };
@@ -96,7 +95,7 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <div>
       <div className="app">
         <Header />
         <img src={stageImage} alt="Stage" className="stage-image" />
@@ -115,8 +114,65 @@ const App = () => {
           onProceed={handleProceedToPayment}
         />
       </div>
-    </Router>
+    </div>
   );
 };
 
 export default App;
+
+// import React, { useEffect, useState } from "react";
+// import { PublicClientApplication } from "@azure/msal-browser";
+
+// const msalConfig = {
+//   auth: {
+//     clientId: "08a2c4f6-1de5-4546-828b-6e2ff08dd3b2", // Your Client ID
+//     authority:
+//       "https://login.microsoftonline.com/6b8b8296-bdff-4ad8-93ad-84bcbf3842f5", // Your tenant ID
+//     redirectUri: "http://localhost", // Your redirect URI
+//   },
+// };
+
+// const msalInstance = new PublicClientApplication(msalConfig);
+
+// const App = () => {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+//   useEffect(() => {
+//     const initializeMSAL = async () => {
+//       try {
+//         await msalInstance.initialize(); // Initialize the MSAL instance
+//         const accounts = msalInstance.getAllAccounts();
+//         if (accounts.length > 0) {
+//           setIsAuthenticated(true); // User is already authenticated
+//         }
+//       } catch (error) {
+//         console.error("MSAL Initialization Error:", error);
+//       }
+//     };
+
+//     initializeMSAL();
+//   }, []);
+
+//   const login = async () => {
+//     try {
+//       const loginResponse = await msalInstance.loginPopup();
+//       console.log("Login successful:", loginResponse);
+//       setIsAuthenticated(true);
+//     } catch (error) {
+//       console.error("Login Error:", error);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h1>My App</h1>
+//       {isAuthenticated ? (
+//         <p>Welcome!</p>
+//       ) : (
+//         <button onClick={login}>Login</button>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default App;
