@@ -5,7 +5,7 @@ const msalConfig = {
   auth: {
     clientId: "YOUR_CLIENT_ID", // Your Client ID
     authority: "https://login.microsoftonline.com/YOUR_TENANT_ID", // Your tenant ID
-    redirectUri: "http://localhost:3000", // Your redirect URI
+    redirectUri: "http://localhost:8000", // Your redirect URI
   },
 };
 

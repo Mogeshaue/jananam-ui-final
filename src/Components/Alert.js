@@ -50,7 +50,7 @@ const Alert = ({
           <p>Price per Ticket: ${amount_of_ticket}</p>
           <label htmlFor="ticketQuantity">Tickets (Max {maxTickets}):</label>
           <input
-            type="number"
+            type="number" 
             id="ticketQuantity"
             value={ticketCount}
             onChange={handleTicketChange}

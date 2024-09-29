@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import Carousel from "./Components/Carousel";
 import axios from "axios";
 import "./index.css";
-import Header from "./Components/Header";
+import Header from "./Components/Header.jsx";
 import Bays from "./Components/Bays";
 import Alert from "./Components/Alert";
 import stageImage from "./Components/stage.jpg";
+
+
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
+
+function Home({ images }) {
+  return (
+    <div className="App">
+      <Header />
+      <Carousel images={images} />
+    </div>
+  );
+}
 
 const App = () => {
   const [boysBays, setBoysBays] = useState([]);
@@ -13,6 +25,13 @@ const App = () => {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [selectedBay, setSelectedBay] = useState(null);
   const [ticketCount, setTicketCount] = useState(1);
+
+  // Images for carousel
+  const images = [
+    'https://picsum.photos/1920/1080?random=1.jpg',
+    'https://picsum.photos/1920/1080?random=2.jpg',
+    'https://picsum.photos/1920/1080?random=3.jpg'
+  ];
 
   // Fetch bay data from backend on component mount
   useEffect(() => {
@@ -98,7 +117,12 @@ const App = () => {
   return (
     <Router>
       <div className="app">
-        <Header />
+        <Routes>
+          {/* Define routes inside the Routes component */}
+          <Route path="/" element={<Home images={images} />} />
+        </Routes>
+        {/* These elements are not part of routes, and should be rendered outside Routes */}
+    
         <img src={stageImage} alt="Stage" className="stage-image" />
         <h1 className="BayText">Bays</h1>
         <Bays
@@ -109,7 +133,7 @@ const App = () => {
         <Alert
           isOpen={isAlertOpen}
           onClose={closeAlert}
-          bayDetails={selectedBay} // Pass the entire bay object
+          bayDetails={selectedBay}
           ticketCount={ticketCount}
           setTicketCount={setTicketCount}
           onProceed={handleProceedToPayment}
@@ -120,60 +144,3 @@ const App = () => {
 };
 
 export default App;
-
-// import React, { useEffect, useState } from "react";
-// import { PublicClientApplication } from "@azure/msal-browser";
-
-// const msalConfig = {
-//   auth: {
-//     clientId: "08a2c4f6-1de5-4546-828b-6e2ff08dd3b2", // Your Client ID
-//     authority:
-//       "https://login.microsoftonline.com/6b8b8296-bdff-4ad8-93ad-84bcbf3842f5", // Your tenant ID
-//     redirectUri: "http://localhost", // Your redirect URI
-//   },
-// };
-
-// const msalInstance = new PublicClientApplication(msalConfig);
-
-// const App = () => {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-//   useEffect(() => {
-//     const initializeMSAL = async () => {
-//       try {
-//         await msalInstance.initialize(); // Initialize the MSAL instance
-//         const accounts = msalInstance.getAllAccounts();
-//         if (accounts.length > 0) {
-//           setIsAuthenticated(true); // User is already authenticated
-//         }
-//       } catch (error) {
-//         console.error("MSAL Initialization Error:", error);
-//       }
-//     };
-
-//     initializeMSAL();
-//   }, []);
-
-//   const login = async () => {
-//     try {
-//       const loginResponse = await msalInstance.loginPopup();
-//       console.log("Login successful:", loginResponse);
-//       setIsAuthenticated(true);
-//     } catch (error) {
-//       console.error("Login Error:", error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>My App</h1>
-//       {isAuthenticated ? (
-//         <p>Welcome!</p>
-//       ) : (
-//         <button onClick={login}>Login</button>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default App;
