@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import Carousel from "./Components/Carousel";
 import axios from "axios";
 import "./index.css";
-import Header from "./Components/Header.jsx";
+import Header from "./Components/Header.js";
 import Bays from "./Components/Bays";
 import Alert from "./Components/Alert";
 import stageImage from "./Components/stage.jpg";
+import ConcertBooking from "./pages/bay-page.js";
 
 
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
@@ -116,29 +117,12 @@ const App = () => {
 
   return (
     <Router>
-      <div className="app">
         <Routes>
           {/* Define routes inside the Routes component */}
           <Route path="/" element={<Home images={images} />} />
+          <Route path="/booking" element={<ConcertBooking />} />
         </Routes>
         {/* These elements are not part of routes, and should be rendered outside Routes */}
-    
-        <img src={stageImage} alt="Stage" className="stage-image" />
-        <h1 className="BayText">Bays</h1>
-        <Bays
-          boysBays={boysBays}
-          girlsBays={girlsBays}
-          onBayClick={handleBayClick}
-        />
-        <Alert
-          isOpen={isAlertOpen}
-          onClose={closeAlert}
-          bayDetails={selectedBay}
-          ticketCount={ticketCount}
-          setTicketCount={setTicketCount}
-          onProceed={handleProceedToPayment}
-        />
-      </div>
     </Router>
   );
 };
