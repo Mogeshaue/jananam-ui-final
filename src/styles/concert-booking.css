@@ -1,0 +1,33 @@
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.left-section h3 {
+  font-size: 16px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.left-section img {
+  width: 100%;
+  height: auto;
+}
+
+.right-section {
+  flex: 1;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+}

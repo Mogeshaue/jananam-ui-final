@@ -1,27 +1,34 @@
 import React from 'react';
+import axios from 'axios';  // Import axios for HTTP requests
 import '../styles/header.css'; 
-import { useMsal } from "@azure/msal-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  const { instance, accounts } = useMsal(); // Get accounts from context
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    instance.loginPopup().then(() => {
-      navigate("/bay"); // Redirect to bay after login
-    }).catch(e => {
-      console.error(e); // Handle error
-    });
+  const handleLogin = async () => {
+    try {
+      // Make the login request to your backend using Fetch API
+      const response = await fetch('http://localhost:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      // If login is successful, redirect to the booking page
+      if (response.ok) {
+        navigate('/booking');
+      } else {
+        const data = await response.json();
+        console.error('Login failed:', data);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
   };
-
-  const handleLogout = () => {
-    instance.logoutPopup().then(() => {
-      navigate("/"); // Redirect to home after logout
-    }).catch(e => {
-      console.error(e); // Handle error
-    });
-  };
+  
+ 
 
   return (
     <header className="header">
@@ -29,11 +36,8 @@ const Header = () => {
         <h3>JANANAM</h3>
       </div>
       <div className="login-button">
-        {accounts.length > 0 ? (
-          <button onClick={handleLogout}>Logout</button> // Show Logout if user is logged in
-        ) : (
-          <button onClick={handleLogin}>Login</button> // Show Login if user is not logged in
-        )}
+        <button onClick={handleLogin}>Login</button>
+       
       </div>
     </header>
   );

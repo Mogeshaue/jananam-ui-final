@@ -1,0 +1,67 @@
+.rules-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .rules-dialog {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .rules-dialog h2 {
+    margin-bottom: 20px;
+  }
+  
+  .rules-dialog ul {
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .rules-dialog li {
+    margin-bottom: 10px;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .back-button, .confirm-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .back-button {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .confirm-button {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  .confirm-button:hover {
+    background-color: #27ae60;
+  }
+  
+  .back-button:hover {
+    background-color: #c0392b;
+  }
+  

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import axios from "axios";
 import "./index.css";
-import Header from "./Components/Header";
-import Bays from "./Components/Bays";
-import Alert from "./Components/Alert";
+import Header from "../Components/Header";
+import Bays from "../Components/Bays";
+import Alert from "../Components/Alert";
 import stageImage from "./Components/stage.jpg";
 
 const App = () => {

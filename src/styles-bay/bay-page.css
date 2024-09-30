@@ -1,0 +1,94 @@
+:root {
+    --dark-purple: #2e073f;
+    --light-purple: #7a1cac;
+    --aqua: #ad49e1;
+    --light-blue: #ebd3f8;
+  }
+  
+  body {
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+  }
+  
+  .concert-booking-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(188, 201, 211);
+    padding: 10px;
+    color: white;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  .logout-button {
+    background-color: #0078D4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logout-button:hover {
+    background-color: var(--aqua);
+  }
+  
+  .main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .left-section {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .left-section h1 {
+    font-size: 36px;
+    color: rgb(76, 56, 93);
+    margin-bottom: 15px;
+  }
+  
+  .left-section p {
+    color: rgb(93, 93, 109);
+    margin-bottom: 40px;
+    margin-top: 10px;
+
+  }
+  
+  .concert-image {
+    max-width: 100%;
+    height:auto;
+  }
+  
+  .right-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      flex-direction: column;
+    }
+  }
+  
